@@ -42,7 +42,7 @@ const AccessGate = ({ onAccessGranted, onClose }) => {
 
       setTimeout(() => {
         onAccessGranted();
-      }, 2500);
+      }, 1000);
     } catch (err) {
       setError('Ha ocurrido un error al conectar. Verifica tu internet o intenta más tarde.');
     } finally {
@@ -214,13 +214,14 @@ const AccessGate = ({ onAccessGranted, onClose }) => {
               </div>
 
               <div className="form-group flex flex-col gap-2 mb-2">
-                <label style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Perfil de Instagram <span style={{ color: 'var(--text-muted)', fontWeight: 400 }}>(opcional)</span></label>
+                <label style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Perfil de Instagram</label>
                 <input
                   type="text"
                   name="instagram"
                   value={formData.instagram}
                   onChange={handleChange}
                   placeholder="@tu_usuario"
+                  required
                   style={{
                     width: '100%',
                     padding: '0.8rem 1rem',

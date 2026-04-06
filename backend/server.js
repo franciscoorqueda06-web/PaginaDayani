@@ -144,16 +144,20 @@ app.post('/api/access', async (req, res) => {
   try {
     const { fullName, email, instagram } = req.body;
 
-    if (!fullName || !email) {
-      return res.status(400).json({ error: 'Nombre y correo son obligatorios' });
+    if (!fullName || !email || !instagram) {
+      return res.status(400).json({ error: 'Nombre, correo y perfil de Instagram son obligatorios' });
     }
 
-    // 1. Guardar en MongoDB
-    const newAccessLead = new AccessLead({ fullName, email, instagram: instagram || '' });
-    await newAccessLead.save();
-
     // Respondemos INMEDIATAMENTE para que el frontend no se quede "Enviando..."
-    res.status(201).json({ message: 'Acceso concedido y guardado exitosamente' });
+    res.status(201).json({ message: 'Acceso concedido. Procesando en segundo plano.' });
+
+    // 1. Guardar en MongoDB (en segundo plano)
+    try {
+      const newAccessLead = new AccessLead({ fullName, email, instagram });
+      newAccessLead.save().catch(err => console.error('Error al guardar en MongoDB:', err));
+    } catch (saveError) {
+      console.error('Mongoose save initialization error:', saveError);
+    }
 
     // 2. Enviar email de confirmación al usuario (en segundo plano)
     if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
@@ -174,10 +178,7 @@ app.post('/api/access', async (req, res) => {
     }
 
   } catch (error) {
-    console.error('Error al guardar Access Lead:', error);
-    if (!res.headersSent) {
-      res.status(500).json({ error: 'Error interno del servidor' });
-    }
+    console.error('Error general al procesar Access Lead:', error);
   }
 });
 
