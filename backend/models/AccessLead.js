@@ -14,7 +14,7 @@ const accessLeadSchema = new mongoose.Schema({
   },
   instagram: {
     type: String,
-    required: true,
+    required: false,
     trim: true
   },
   createdAt: {
