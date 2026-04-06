@@ -1,5 +1,27 @@
 import React from 'react';
 
+const problemStyles = `
+  .problem-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(200,141,148,0.2);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    border: 1px solid rgba(200,141,148,0.2);
+  }
+  @media (max-width: 640px) {
+    .problem-two-col {
+      grid-template-columns: 1fr;
+    }
+    .problem-two-col > div:last-child {
+      border-left: none !important;
+      border-top: 1px solid rgba(200,141,148,0.2);
+    }
+  }
+`;
+
 const consequences = [
   {
     icon: (
@@ -51,6 +73,7 @@ const Problem = () => {
       position: 'relative',
       overflow: 'hidden',
     }}>
+      <style>{problemStyles}</style>
 
       {/* Subtle bg glow */}
       <div style={{
@@ -90,16 +113,7 @@ const Problem = () => {
         </div>
 
         {/* ── EXPLANATION CARD ── */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '1px',
-          background: 'rgba(200,141,148,0.2)',
-          borderRadius: '1.25rem',
-          overflow: 'hidden',
-          marginBottom: '3rem',
-          border: '1px solid rgba(200,141,148,0.2)',
-        }}>
+        <div className="problem-two-col">
           <div style={{ background: 'var(--color-surface)', padding: '2rem' }}>
             <p style={{ fontSize: '0.75rem', fontWeight: 700, color: '#ef4444', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '0.75rem' }}>Lo que el banco ve</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
