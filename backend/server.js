@@ -152,35 +152,32 @@ app.post('/api/access', async (req, res) => {
     const newAccessLead = new AccessLead({ fullName, email, instagram: instagram || '' });
     await newAccessLead.save();
 
-    // 2. Enviar email de confirmación al usuario
-    if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
-      try {
-        await sendConfirmationEmail(fullName, email);
-        console.log(`✅ Email de confirmación enviado a ${email}`);
-      } catch (mailError) {
-        // No bloqueamos el flujo si el email falla
-        console.error('⚠️ Error al enviar email de confirmación:', mailError.message);
-      }
-    }
-
-    // 3. Enviar a Google Sheets
-    if (process.env.GOOGLE_SHEETS_HOOK) {
-      try {
-        await fetch(process.env.GOOGLE_SHEETS_HOOK, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ fullName, email, instagram })
-        });
-        console.log('✅ Lead enviado a Google Sheets');
-      } catch (sheetError) {
-        console.error('⚠️ Error al enviar a Google Sheets:', sheetError);
-      }
-    }
-
+    // Respondemos INMEDIATAMENTE para que el frontend no se quede "Enviando..."
     res.status(201).json({ message: 'Acceso concedido y guardado exitosamente' });
+
+    // 2. Enviar email de confirmación al usuario (en segundo plano)
+    if (process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD) {
+      sendConfirmationEmail(fullName, email)
+        .then(() => console.log(`✅ Email de confirmación enviado a ${email}`))
+        .catch(mailError => console.error('⚠️ Error al enviar email de confirmación:', mailError.message));
+    }
+
+    // 3. Enviar a Google Sheets (en segundo plano)
+    if (process.env.GOOGLE_SHEETS_HOOK) {
+      fetch(process.env.GOOGLE_SHEETS_HOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fullName, email, instagram })
+      })
+      .then(() => console.log('✅ Lead enviado a Google Sheets'))
+      .catch(sheetError => console.error('⚠️ Error al enviar a Google Sheets:', sheetError));
+    }
+
   } catch (error) {
     console.error('Error al guardar Access Lead:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
+    if (!res.headersSent) {
+      res.status(500).json({ error: 'Error interno del servidor' });
+    }
   }
 });
 
