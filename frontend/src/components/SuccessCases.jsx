@@ -53,14 +53,6 @@ const SuccessCases = () => {
       description: "Logró tasas de interés mucho más bajas para sus propiedades de inversión.",
       stars: 5,
       image: "/imagen3.png"
-    },
-    {
-      name: "María G.",
-      role: "Restaurante",
-      points: "+260 pts",
-      description: "Encontramos errores en su reporte que la estancaban. Hoy tiene el financiamiento de su negocio.",
-      stars: 5,
-      image: "/imagen4.png"
     }
   ];
 

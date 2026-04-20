@@ -31,14 +31,6 @@ const Testimonials = () => {
       stars: 5
     },
     {
-      name: "María González",
-      role: "Dueña de E-Commerce",
-      image: "https://i.pravatar.cc/150?img=5",
-      quote: "No entendía por qué los bancos siempre me rechazaban. Dayani encontró errores en mi reporte que me estaban estancando. Hoy tengo mi financiamiento.",
-      score_increase: "+145 pts",
-      stars: 5
-    },
-    {
       name: "Roberto Silva",
       role: "Inversionista Inmobiliario",
       image: "https://i.pravatar.cc/150?img=8",
