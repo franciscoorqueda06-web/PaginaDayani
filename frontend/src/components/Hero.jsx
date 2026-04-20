@@ -71,19 +71,10 @@ const Hero = ({ onOpenModal }) => {
             position: 'relative', zIndex: 1, padding: '1rem', aspectRatio: '4/5', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}>
             <video 
-              src="/VideoDayani.mp4"
+              src="/VSL -Dayani.mp4"
               controls
               style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-md)' }} 
-            />
-
-            {/* Overlay Text */}
-            <div className="glass-panel" style={{
-              position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem', padding: '1rem',
-              border: '1px solid rgba(200, 141, 148, 0.3)'
-            }}>
-              <p style={{ color: 'var(--color-accent)', fontWeight: 600, margin: 0, fontSize: '0.9rem' }}>Solo 15 minutos</p>
-              <h3 style={{ fontSize: '1.2rem', margin: 0, color: 'white' }}>Pueden cambiar todo tu futuro financiero</h3>
-            </div>
+            />          
           </div>
         </div>
 
