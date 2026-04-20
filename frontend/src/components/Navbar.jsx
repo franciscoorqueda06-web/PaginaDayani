@@ -29,7 +29,7 @@ const Navbar = ({ onOpenModal }) => {
             alt="Dayani Credit Pro Logo" 
             style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover' }} 
           />
-          <h2 style={{ fontSize: '1.5rem', margin: 0 }}>Dayani <span className="text-gold">Credit Pro</span></h2>
+          <h2 style={{ fontSize: '1.5rem', margin: 0 }}>Dc <span className="text-gold">Credit Pro</span></h2>
         </div>
 
         <nav className="nav-links flex gap-8 items-center" style={{ display: 'none' }}>

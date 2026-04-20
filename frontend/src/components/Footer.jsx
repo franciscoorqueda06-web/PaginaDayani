@@ -19,7 +19,7 @@ const Footer = () => {
         </div>
 
         <div style={{ textAlign: 'center', paddingTop: '2rem', borderTop: '1px solid var(--color-surface)', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-          <p>&copy; {new Date().getFullYear()} Dayani Credit Pro. Todos los derechos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Dc Credit Pro. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
