@@ -24,15 +24,11 @@ const Navbar = ({ onOpenModal }) => {
     }}>
       <div className="container flex items-center justify-between" style={{ height: '100%' }}>
         <div className="logo flex items-center gap-2">
-          <div style={{
-            width: '40px', height: '40px',
-            background: 'var(--gold-gradient)',
-            borderRadius: '8px',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: '#000', fontWeight: 'bold', fontSize: '1.2rem'
-          }}>
-            D
-          </div>
+          <img 
+            src="/Logo.jpeg" 
+            alt="Dayani Credit Pro Logo" 
+            style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover' }} 
+          />
           <h2 style={{ fontSize: '1.5rem', margin: 0 }}>Dayani <span className="text-gold">Credit Pro</span></h2>
         </div>
 

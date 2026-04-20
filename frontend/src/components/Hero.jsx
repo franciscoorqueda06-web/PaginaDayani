@@ -70,19 +70,11 @@ const Hero = ({ onOpenModal }) => {
           <div className="glass-panel" style={{
             position: 'relative', zIndex: 1, padding: '1rem', aspectRatio: '4/5', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}>
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop"
-              alt="Dayani Credit Consultant Placeholder"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-md)' }} />
-
-            {/* Play Button Overlay */}
-            <div style={{
-              position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-              width: '80px', height: '80px', background: 'var(--gold-gradient)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 0 30px rgba(200, 141, 148, 0.5)'
-            }}>
-              <div style={{
-                width: 0, height: 0, borderTop: '12px solid transparent', borderBottom: '12px solid transparent', borderLeft: '20px solid black', marginLeft: '5px'
-              }}></div>
-            </div>
+            <video 
+              src="/VideoDayani.mp4"
+              controls
+              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-md)' }} 
+            />
 
             {/* Overlay Text */}
             <div className="glass-panel" style={{
