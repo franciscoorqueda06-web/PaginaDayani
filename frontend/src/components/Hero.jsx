@@ -71,10 +71,9 @@ const Hero = ({ onOpenModal }) => {
             position: 'relative', zIndex: 1, padding: '1rem', aspectRatio: '4/5', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}>
             <iframe 
-              src="https://www.youtube.com/embed/-9y00tOmFjA?autoplay=0&rel=0&modestbranding=1" 
+              src="https://www.loom.com/embed/53fb15d48eea498bb250e53872ca6b29?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" 
               title="Dayani Credit Consultant Video"
               frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-md)' }} 
             ></iframe>
