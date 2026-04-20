@@ -16,24 +16,6 @@ const Footer = () => {
             </h2>
             <p style={{ fontSize: '0.9rem', maxWidth: '300px' }}>Tu futuro financiero asegurado. Estrategias comprobadas de reparación y construcción de crédito para familias y emprendedores.</p>
           </div>
-
-          {/* Contact */}
-          <div>
-            <h4 style={{ color: 'var(--text-primary)', marginBottom: '1rem', letterSpacing: '1px' }}>Contacto Directo</h4>
-            <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}>📍 Oficina Principal: (Ubicación Pendiente)</p>
-            <p style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}>📞 Teléfono: (xxx) xxx-xxxx</p>
-            <p style={{ fontSize: '0.9rem' }}>✉️ Email: hola@dayanicreditpro.com</p>
-          </div>
-
-          {/* Social Links */}
-          <div>
-            <h4 style={{ color: 'var(--text-primary)', marginBottom: '1rem', letterSpacing: '1px' }}>Redes Sociales</h4>
-            <div className="flex gap-4">
-              <a href="#" style={{ padding: '0.5rem', background: 'var(--color-surface)', borderRadius: '50%', color: 'var(--color-accent)' }}>IG</a>
-              <a href="#" style={{ padding: '0.5rem', background: 'var(--color-surface)', borderRadius: '50%', color: 'var(--color-accent)' }}>FB</a>
-              <a href="#" style={{ padding: '0.5rem', background: 'var(--color-surface)', borderRadius: '50%', color: 'var(--color-accent)' }}>IN</a>
-            </div>
-          </div>
         </div>
 
         <div style={{ textAlign: 'center', paddingTop: '2rem', borderTop: '1px solid var(--color-surface)', fontSize: '0.8rem', color: 'var(--text-muted)' }}>

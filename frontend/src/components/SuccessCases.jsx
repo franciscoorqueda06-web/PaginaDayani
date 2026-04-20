@@ -9,7 +9,6 @@ const SuccessCases = () => {
     {
       name: "Yan M.",
       role: "Usuario Apple Card",
-      points: "+42 pts",
       description: "Limpiamos su historial por completo y con nuevas estrategias logró la aprobación de su Apple Card.",
       stars: 5,
       image: "/caso-yan.jpeg"
@@ -17,7 +16,6 @@ const SuccessCases = () => {
     {
       name: "Linet R.",
       role: "Remoción de Colecciones",
-      points: "-$24,000 Deuda",
       description: "16 cuentas negativas borradas en 2 meses. Su deuda bajó de $42,000 a $18,000.",
       stars: 5,
       image: "/caso-linet.png"
@@ -25,7 +23,6 @@ const SuccessCases = () => {
     {
       name: "Claudia R.",
       role: "Dueña de E-Commerce",
-      points: "+280 pts",
       description: "Su score subió y logró una tasa excelente. Hoy tiene las llaves de su primer hogar.",
       stars: 5,
       image: "/imagen1.png"
@@ -33,7 +30,6 @@ const SuccessCases = () => {
     {
       name: "Diego F.",
       role: "Construcción",
-      points: "+230 pts",
       description: "De 560 a 720 puntos en 90 días. Consiguió la línea de crédito para expandir su empresa.",
       stars: 5,
       image: "/Caso-sinnombre.jpeg"
@@ -41,7 +37,6 @@ const SuccessCases = () => {
     {
       name: "Laura J.",
       role: "Consultoría",
-      points: "+270 pts",
       description: "Su perfil era 'fantasma'. Dayani le construyó un score de 780 y accedió a financiamiento.",
       stars: 5,
       image: "/Imagen2.png"
@@ -49,7 +44,6 @@ const SuccessCases = () => {
     {
       name: "Roberto S.",
       role: "Importador",
-      points: "+260 pts",
       description: "Logró tasas de interés mucho más bajas para sus propiedades de inversión.",
       stars: 5,
       image: "/imagen3.png"

@@ -35,14 +35,13 @@ const Testimonials = () => {
       role: "Inversionista Inmobiliario",
       image: "https://i.pravatar.cc/150?img=8",
       quote: "La mejor inversión. Con el score que logramos pude conseguir tasas de interés mucho más bajas para mis propiedades. 100% recomendada.",
-      score_increase: "+210 pts",
       stars: 5
     },
     {
       name: "Laura Jiménez",
       role: "Desarrolladora de Software",
       image: "https://i.pravatar.cc/150?img=1",
-      quote: "Pensé que tener buen sueldo bastaba para comprar casa. Dayani me explicó que mi perfil era 'fantasma'. En meses me construyó un score de 780.",
+      quote: "Pensé que tener buen sueldo bastaba para comprar casa. Dayani me explicó que mi perfil era 'fantasma'. En pocos meses me construyó un score de casi 700.",
       score_increase: "Perfil Nuevo",
       stars: 5
     },
@@ -51,7 +50,6 @@ const Testimonials = () => {
       role: "Empresario de Construcción",
       image: "https://i.pravatar.cc/150?img=12",
       quote: "Llevaba dos años intentando conseguir financiamiento para expandir mi empresa y nadie me aprobaba. Dayani revisó mi reporte, encontró deudas que ni sabía que tenía y las disputó. En menos de 90 días mi score pasó de 560 a 720. Hoy tengo la línea de crédito que necesitaba para crecer.",
-      score_increase: "+160 pts",
       stars: 5
     },
   ];

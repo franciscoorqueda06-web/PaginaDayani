@@ -11,7 +11,7 @@ const Booking = ({ bookingUnlocked, onOpenModal }) => {
         </div>
 
         {bookingUnlocked ? (
-          <div className="card glass-panel" style={{ padding: '1rem', overflow: 'hidden' }}>
+          <div className="card glass-panel" style={{ overflow: 'hidden', maxWidth: '1040px', margin: '0 auto', padding: '0.5rem' }}>
             <InlineWidget
               url="https://calendly.com/cardosodayani0/30min"
               styles={{ height: '700px', minWidth: '320px', width: '100%' }}
@@ -19,36 +19,31 @@ const Booking = ({ bookingUnlocked, onOpenModal }) => {
           </div>
         ) : (
           /* Locked preview — blurred Calendly behind a CTA */
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative', maxWidth: '1040px', margin: '0 auto', overflow: 'hidden', borderRadius: 'var(--radius-lg)' }}>
             <div style={{
+              position: 'absolute', inset: 0,
               filter: 'blur(6px)',
               pointerEvents: 'none',
               userSelect: 'none',
-              overflow: 'hidden',
-              borderRadius: 'var(--radius-lg)',
               opacity: 0.5,
-              height: '320px',
               background: 'var(--color-surface)',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              border: '1px solid var(--color-border)'
+              justifyContent: 'center'
             }}>
               <div style={{ textAlign: 'center', padding: '2rem' }}>
                 <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📅</div>
-                <p style={{ fontSize: '1.2rem' }}>Calendario de disponibilidad...</p>
               </div>
             </div>
 
             {/* Overlay CTA */}
             <div style={{
-              position: 'absolute', inset: 0,
+              position: 'relative', zIndex: 1,
               display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center',
-              gap: '1.5rem', padding: '2rem',
+              gap: '1.5rem', padding: '3rem 2rem',
               background: 'rgba(2, 6, 23, 0.6)',
               backdropFilter: 'blur(4px)',
-              borderRadius: 'var(--radius-lg)',
               border: '1px solid rgba(200, 141, 148, 0.3)'
             }}>
               <div style={{
