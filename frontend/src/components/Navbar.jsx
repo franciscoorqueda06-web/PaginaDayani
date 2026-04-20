@@ -25,7 +25,7 @@ const Navbar = ({ onOpenModal }) => {
       <div className="container flex items-center justify-between" style={{ height: '100%' }}>
         <div className="logo flex items-center gap-2">
           <img 
-            src="/Logo.jpeg" 
+            src="/Logo.png" 
             alt="Dayani Credit Pro Logo" 
             style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover' }} 
           />

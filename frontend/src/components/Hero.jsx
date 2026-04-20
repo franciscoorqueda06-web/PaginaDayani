@@ -71,7 +71,7 @@ const Hero = ({ onOpenModal }) => {
             position: 'relative', zIndex: 1, padding: '1rem', aspectRatio: '4/5', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}>
             <video 
-              src="/VSL -Dayani.mp4"
+              src="/VideoDayani.mp4"
               controls
               style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-md)' }} 
             />          
