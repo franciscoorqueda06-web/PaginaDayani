@@ -70,11 +70,14 @@ const Hero = ({ onOpenModal }) => {
           <div className="glass-panel" style={{
             position: 'relative', zIndex: 1, padding: '1rem', aspectRatio: '4/5', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}>
-            <video 
-              src="/VideoDayani.mp4"
-              controls
+            <iframe 
+              src="https://www.youtube.com/embed/-9y00tOmFjA?autoplay=0&rel=0&modestbranding=1" 
+              title="Dayani Credit Consultant Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
               style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-md)' }} 
-            />          
+            ></iframe>
           </div>
         </div>
 
