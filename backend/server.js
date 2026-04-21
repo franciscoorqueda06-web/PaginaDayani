@@ -101,10 +101,6 @@ async function sendConfirmationEmail(fullName, email) {
                style="display:inline-block;background:linear-gradient(135deg,#c88d94,#a05060);color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:700;font-size:1rem;margin-bottom:24px;">
               Ver mi Calendario 📅
             </a>
-
-            <p style="color:#64748b;font-size:0.85rem;margin:0;line-height:1.6;">
-              ¿Preguntas? Escríbenos a <a href="mailto:${process.env.GMAIL_USER}" style="color:#c88d94;">${process.env.GMAIL_USER}</a>
-            </p>
           </div>
 
           <!-- Footer -->
