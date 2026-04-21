@@ -61,7 +61,7 @@ async function sendConfirmationEmail(fullName, email) {
           <div style="text-align:center;margin-bottom:32px;">
             <img src="${process.env.FRONTEND_URL || 'https://dccreditpro.com'}/Logo.png" alt="Logo Dayani" style="width:64px;height:64px;border-radius:12px;margin-bottom:16px;object-fit:cover;" />
             <br />
-            <h1 style="color:#ffffff;font-size:1.4rem;margin:0;">Dayani <span style="color:#c88d94;">Credit Pro</span></h1>
+            <h1 style="color:#ffffff;font-size:1.4rem;margin:0;">Dc <span style="color:#c88d94;">Credit Pro</span></h1>
           </div>
 
           <!-- Card -->
@@ -106,7 +106,7 @@ async function sendConfirmationEmail(fullName, email) {
           <!-- Footer -->
           <div style="text-align:center;margin-top:32px;">
             <p style="color:#475569;font-size:0.8rem;margin:0;">
-              © 2025 Dayani Credit Pro. Todos los derechos reservados.<br>
+              © 2025 Dc Credit Pro. Todos los derechos reservados.<br>
               Este correo fue enviado porque solicitaste información en nuestro sitio web.
             </p>
           </div>
