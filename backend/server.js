@@ -44,7 +44,7 @@ const transporter = nodemailer.createTransport({
 // --- Helper: Enviar email de confirmación ---
 async function sendConfirmationEmail(fullName, email) {
   const mailOptions = {
-    from: `"Dayani Credit Pro" <${process.env.GMAIL_USER}>`,
+    from: `"Dc Credit Pro" <${process.env.GMAIL_USER}>`,
     to: email,
     subject: '✅ ¡Tu diagnóstico gratuito está confirmado!',
     html: `
