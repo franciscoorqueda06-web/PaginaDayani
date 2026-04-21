@@ -63,7 +63,7 @@ const Offer = ({ onOpenModal }) => {
             className="btn"
             style={{ background: 'var(--color-bg)', color: 'var(--color-accent-light)', padding: '1rem 3rem', fontSize: '1.1rem', display: 'inline-block' }}
           >
-            Agendar Mi Cita de 15 Minutos
+            Agendar Mi Cita de 30 Minutos
           </a>
         </div>
 
