@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 const AccessGate = ({ onAccessGranted, onClose }) => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    instagram: ''
-  });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
   // Prevent body scroll when modal is open
@@ -16,39 +9,60 @@ const AccessGate = ({ onAccessGranted, onClose }) => {
     return () => { document.body.style.overflow = ''; };
   }, []);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // Load Tally script and listen for submission
+  useEffect(() => {
+    let successTriggered = false;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
+    const handleMessage = (e) => {
+      if (successTriggered) return;
 
-    try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-      const response = await fetch(`${API_URL}/api/access`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
+      // Validar si el mensaje viene de Tally y es un submit
+      let isSubmit = false;
 
-      if (!response.ok) {
-        throw new Error('Error en el servidor');
+      try {
+        const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+        if (data && data.event === 'Tally.FormSubmitted') {
+          isSubmit = true;
+        }
+      } catch (err) {
+        // Ignorar mensajes que no sean JSON válido
+      }
+      
+      // Manejar el formato alternativo de Tally (string literal)
+      if (typeof e.data === 'string' && e.data.includes('Tally.FormSubmitted')) {
+          isSubmit = true;
       }
 
-      localStorage.setItem('dayani_access_granted', 'true');
-      setSuccess(true);
+      if (isSubmit) {
+        successTriggered = true;
+        localStorage.setItem('dayani_access_granted', 'true');
+        setSuccess(true);
+        setTimeout(() => {
+          onAccessGranted();
+        }, 1500);
+      }
+    };
 
-      setTimeout(() => {
-        onAccessGranted();
-      }, 1000);
-    } catch (err) {
-      setError('Ha ocurrido un error al conectar. Verifica tu internet o intenta más tarde.');
-    } finally {
-      setLoading(false);
+    window.addEventListener('message', handleMessage);
+    
+    // Cargar script de Tally
+    const script = document.createElement('script');
+    script.src = "https://tally.so/widgets/embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Intentar inicializar embeds si el script ya estaba cargado
+    if (window.Tally) {
+      window.Tally.loadEmbeds();
     }
-  };
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+      if (document.body.contains(script)) {
+         document.body.removeChild(script);
+      }
+    };
+  }, [onAccessGranted]);
 
   return (
     <div
@@ -112,7 +126,8 @@ const AccessGate = ({ onAccessGranted, onClose }) => {
               cursor: 'pointer',
               color: 'var(--text-secondary)',
               fontSize: '1.1rem',
-              transition: 'all 0.2s ease'
+              transition: 'all 0.2s ease',
+              zIndex: 10
             }}
             onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; e.currentTarget.style.color = 'white'; }}
             onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.07)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
@@ -140,12 +155,12 @@ const AccessGate = ({ onAccessGranted, onClose }) => {
             </div>
             <h2 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#10b981' }}>¡Registro Exitoso!</h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>
-              Revisa tu correo — te enviamos una confirmación. Redirigiendo...
+              Redirigiendo al calendario...
             </p>
           </div>
         ) : (
-          <>
-            <div className="text-center mb-8">
+          <div style={{ minHeight: '300px' }}>
+            <div className="text-center mb-6">
               <div style={{
                 width: '60px',
                 height: '60px',
@@ -163,98 +178,18 @@ const AccessGate = ({ onAccessGranted, onClose }) => {
               <h2 style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>
                 Agenda tu <span className="text-gold">Diagnóstico</span>
               </h2>
-              <p style={{ fontSize: '0.95rem', margin: 0, color: 'var(--text-secondary)' }}>
-                Déjanos tus datos y en segundos accedes al calendario de citas gratuitas.
-              </p>
             </div>
-
-            <form onSubmit={handleSubmit} className="flex-col flex gap-4">
-              <div className="form-group flex flex-col gap-2">
-                <label style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Nombre Completo</label>
-                <input
-                  type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  placeholder="Ej. María González"
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '0.8rem 1rem',
-                    borderRadius: 'var(--radius-sm)',
-                    border: '1px solid var(--color-border)',
-                    background: 'rgba(2, 6, 23, 0.5)',
-                    color: 'white',
-                    outline: 'none',
-                    boxSizing: 'border-box'
-                  }}
-                />
-              </div>
-
-              <div className="form-group flex flex-col gap-2">
-                <label style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Correo Electrónico</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="tu@correo.com"
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '0.8rem 1rem',
-                    borderRadius: 'var(--radius-sm)',
-                    border: '1px solid var(--color-border)',
-                    background: 'rgba(2, 6, 23, 0.5)',
-                    color: 'white',
-                    outline: 'none',
-                    boxSizing: 'border-box'
-                  }}
-                />
-              </div>
-
-              <div className="form-group flex flex-col gap-2 mb-2">
-                <label style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Perfil de Instagram</label>
-                <input
-                  type="text"
-                  name="instagram"
-                  value={formData.instagram}
-                  onChange={handleChange}
-                  placeholder="@tu_usuario"
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '0.8rem 1rem',
-                    borderRadius: 'var(--radius-sm)',
-                    border: '1px solid var(--color-border)',
-                    background: 'rgba(2, 6, 23, 0.5)',
-                    color: 'white',
-                    outline: 'none',
-                    boxSizing: 'border-box'
-                  }}
-                />
-              </div>
-
-              {error && (
-                <div style={{ color: '#ef4444', fontSize: '0.85rem', textAlign: 'center', background: 'rgba(239,68,68,0.08)', padding: '0.6rem 1rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(239,68,68,0.2)' }}>
-                  {error}
-                </div>
-              )}
-
-              <button
-                type="submit"
-                className="btn btn-primary"
-                style={{ width: '100%', marginTop: '0.5rem', opacity: loading ? 0.7 : 1 }}
-                disabled={loading}
-              >
-                {loading ? 'Enviando...' : '🗓️ Quiero mi Diagnóstico Gratuito'}
-              </button>
-
-              <p style={{ fontSize: '0.75rem', textAlign: 'center', marginTop: '0.5rem', color: 'var(--text-muted)' }}>
-                🔒 Tu información está 100% segura. No enviamos spam.
-              </p>
-            </form>
-          </>
+            <iframe
+              data-tally-src="https://tally.so/embed/vG0OVd?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+              loading="lazy"
+              width="100%"
+              height="250"
+              frameBorder="0"
+              marginHeight="0"
+              marginWidth="0"
+              title="Diagnóstico Gratuito"
+            ></iframe>
+          </div>
         )}
       </div>
     </div>
