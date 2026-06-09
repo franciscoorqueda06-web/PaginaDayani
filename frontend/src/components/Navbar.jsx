@@ -66,7 +66,7 @@ const Navbar = () => {
             style={{ width: '35px', height: '35px', borderRadius: '8px', objectFit: 'cover', transition: 'all 0.3s ease' }} 
           />
           <h2 style={{ fontSize: '1.3rem', margin: 0, transition: 'all 0.3s ease', color: 'var(--text-primary)' }}>
-            Dc <span className="text-gold">Credit</span>
+            Dc <span className="text-gold">Credit Pro</span>
           </h2>
         </a>
 
