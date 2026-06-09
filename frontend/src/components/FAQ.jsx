@@ -11,10 +11,6 @@ const faqs = [
     answer: "Aunque cada caso es único y no podemos garantizar tiempos exactos, la mayoría de nuestros clientes comienzan a ver cambios y eliminaciones en sus reportes dentro de los primeros 35 a 45 días después de enviar las primeras disputas."
   },
   {
-    question: "¿Puedo aplicar si no tengo Número de Seguro Social (SSN)?",
-    answer: "¡Por supuesto! Si tienes un ITIN (Número de Identificación Personal del Contribuyente), también tienes derecho a construir y reparar tu historial crediticio. Nosotros te guiaremos paso a paso."
-  },
-  {
     question: "¿Por qué debería contratar a un experto en lugar de hacerlo yo mismo?",
     answer: "Puedes hacerlo tú mismo, pero requiere mucho tiempo, conocimiento de leyes federales y paciencia lidiando con los burós. Un error en la forma de disputar puede validar la deuda en tu contra. Un experto sabe exactamente qué leyes citar y cómo presionar legalmente para obtener resultados rápidos y efectivos."
   }
