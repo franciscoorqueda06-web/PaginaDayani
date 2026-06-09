@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const problemStyles = `
   .problem-two-col {
@@ -86,7 +87,13 @@ const Problem = () => {
       <div className="container" style={{ maxWidth: '900px' }}>
 
         {/* ── HEADLINE ── */}
-        <div className="text-center mb-12">
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
             background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)',
@@ -110,44 +117,62 @@ const Problem = () => {
           <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', maxWidth: '560px', margin: '0 auto' }}>
             Es la <strong style={{ color: 'var(--color-accent)' }}>estructura de tu historial crediticio</strong> — y eso sí se puede reparar.
           </p>
-        </div>
+        </motion.div>
 
         {/* ── EXPLANATION CARD ── */}
-        <div className="problem-two-col">
+        <motion.div 
+          className="problem-two-col"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <div style={{ background: 'var(--color-surface)', padding: '2rem' }}>
             <p style={{ fontSize: '0.75rem', fontWeight: 700, color: '#ef4444', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '0.75rem' }}>Lo que el banco ve</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {['Cuentas en colección', 'Consultas múltiples', 'Historial desordenado', 'Marcas negativas activas'].map((item) => (
-                <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              {['Cuentas en colección', 'Consultas múltiples', 'Historial desordenado', 'Marcas negativas activas'].map((item, i) => (
+                <motion.div 
+                  key={item} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 + i * 0.1 }}
+                >
                   <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(239,68,68,0.15)', border: '1.5px solid #ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                   </div>
                   <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{item}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
           <div style={{ background: 'var(--color-surface)', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderLeft: '1px solid rgba(200,141,148,0.2)' }}>
             <p style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-accent)', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '0.75rem' }}>Su veredicto instantáneo</p>
-            <div style={{
-              background: 'rgba(239,68,68,0.08)',
-              border: '1px solid rgba(239,68,68,0.25)',
-              borderRadius: '0.75rem',
-              padding: '1.25rem',
-              marginBottom: '1rem'
-            }}>
+            <motion.div 
+              style={{
+                background: 'rgba(239,68,68,0.08)',
+                border: '1px solid rgba(239,68,68,0.25)',
+                borderRadius: '0.75rem',
+                padding: '1.25rem',
+                marginBottom: '1rem'
+              }}
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8, type: 'spring', stiffness: 200 }}
+            >
               <p style={{ margin: 0, fontSize: '1.05rem', fontWeight: 600, color: '#ef4444' }}>
                 "Cliente de alto riesgo."
               </p>
               <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
                 No importa cuánto ganes. El algoritmo dice NO.
               </p>
-            </div>
+            </motion.div>
             <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
               Aunque tengas ingresos sólidos, el sistema solo ve tu expediente crediticio — no tu realidad financiera.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* ── CONSEQUENCES GRID ── */}
         <div style={{ marginBottom: '3rem' }}>
@@ -164,22 +189,18 @@ const Problem = () => {
             gap: '1rem',
           }}>
             {consequences.map((item, i) => (
-              <div key={i} style={{
+              <motion.div key={i} style={{
                 background: 'var(--color-surface)',
                 border: '1px solid rgba(239,68,68,0.15)',
                 borderRadius: '1rem',
                 padding: '1.5rem',
-                transition: 'border-color 0.25s, transform 0.25s',
                 cursor: 'default',
               }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = 'rgba(239,68,68,0.45)';
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = 'rgba(239,68,68,0.15)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15, duration: 0.5 }}
+                whileHover={{ scale: 1.03, borderColor: 'rgba(239,68,68,0.45)' }}
               >
                 <div style={{
                   color: '#ef4444',
@@ -195,22 +216,28 @@ const Problem = () => {
                 </div>
                 <h4 style={{ margin: '0 0 0.4rem 0', fontSize: '0.95rem', color: 'white' }}>{item.title}</h4>
                 <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>{item.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* ── GOOD NEWS STRIP ── */}
-        <div style={{
-          background: 'linear-gradient(135deg, rgba(200,141,148,0.12), rgba(160,80,100,0.08))',
-          border: '1px solid rgba(200,141,148,0.35)',
-          borderRadius: '1.25rem',
-          padding: '2rem 2.5rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '2rem',
-          flexWrap: 'wrap',
-        }}>
+        <motion.div 
+          style={{
+            background: 'linear-gradient(135deg, rgba(200,141,148,0.12), rgba(160,80,100,0.08))',
+            border: '1px solid rgba(200,141,148,0.35)',
+            borderRadius: '1.25rem',
+            padding: '2rem 2.5rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '2rem',
+            flexWrap: 'wrap',
+          }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <div style={{
             width: '52px', height: '52px', borderRadius: '50%',
             background: 'var(--gold-gradient)',
@@ -230,7 +257,7 @@ const Problem = () => {
               Con el diagnóstico correcto y la estrategia legal adecuada, podemos limpiar tu perfil y devolverte acceso al financiamiento que mereces.
             </p>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

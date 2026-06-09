@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { motion } from 'framer-motion';
 
 const AnimatedNumber = ({ end, suffix }) => {
   const [count, setCount] = useState(0);
@@ -66,20 +67,41 @@ const Stats = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 100 } }
+  };
+
   return (
     <section className="section" style={{ background: 'var(--color-surface)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
       <div className="container">
-        <div className="grid grid-cols-3 gap-8 text-center" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}>
+        <motion.div 
+          className="grid grid-cols-3 gap-8 text-center" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {statsData.map((stat, index) => (
-             <div key={index} className="stat-card" style={{ padding: '2rem' }}>
+             <motion.div key={index} variants={itemVariants} className="stat-card" style={{ padding: '2rem' }}>
               {stat.icon}
               <h2 className="text-gold" style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>
                 <AnimatedNumber end={stat.number} suffix={stat.suffix} />
               </h2>
               <p style={{ fontWeight: 600, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1rem' }}>{stat.label}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
